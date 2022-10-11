@@ -1,0 +1,49 @@
+.footer {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  background: var(--primary-color);
+
+  h1 {
+    font-size: 1.1rem;
+  }
+
+  .footer__text {
+    line-height: 30px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+  }
+
+  .footer__quick-link {
+    li {
+      background: transparent !important;
+
+      a {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.9rem;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+
+    .quick-link-title {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .icon {
+      color: rgba(255, 255, 255, 0.75);
+    }
+  }
+
+  .footer__copyright {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
