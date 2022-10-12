@@ -11,10 +11,12 @@ import logo from "../../assets/images/eco-logo.png";
 import user_icon from "../../assets/images/user-icon.png";
 import { useScrollY } from "../../hook/useScrollY";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const scrollY = useScrollY();
   const menuRef = useRef(null);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const menuToggle = () => {
     menuRef.current.classList.toggle("active__menu");
@@ -52,7 +54,9 @@ const Header = () => {
               </span>
               <span className="cart__icon">
                 <BsHandbagFill />
-                <span className="badge">1</span>
+                {totalQuantity > 0 && (
+                  <span className="badge">{totalQuantity}</span>
+                )}
               </span>
               <span>
                 <motion.img

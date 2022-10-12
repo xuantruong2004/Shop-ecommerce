@@ -4,8 +4,9 @@ import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login";
-import ProductDetail from "../pages/ProductDetail";
-import Shop from "../pages/Shop";
+import ProductDetail from "../pages/ProductDetail/ProductDetail";
+import Shop from "../pages/Shop/Shop";
+
 import Signup from "../pages/Signup";
 
 const Routers = () => {

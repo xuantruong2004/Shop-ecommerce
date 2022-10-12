@@ -104,7 +104,7 @@ const Home = () => {
             <Col lg="6" md="6">
               <div className="clock__top-content">
                 <h4 className="text-white fs-6 mb-2">Limited offers</h4>
-                <h3 className="text-white fs-5 mb-2">Quality Armchair</h3>
+                <h3 className="text-white fs-5 mb-4">Quality Armchair</h3>
               </div>
               <Clock />
               <motion.button
@@ -115,7 +115,7 @@ const Home = () => {
                 <Link to={"/shop"}>Visit store</Link>
               </motion.button>
             </Col>
-            <Col lg="6" md="6" className="text-end">
+            <Col lg="6" md="6" className="text-end ">
               <img src={counterTime} alt="counterTime" />
             </Col>
           </Row>

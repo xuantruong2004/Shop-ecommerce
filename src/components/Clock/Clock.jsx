@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import "./Clock.scss";
 
 const Clock = () => {
   const [days, setDays] = useState("");
@@ -38,8 +39,8 @@ const Clock = () => {
     <div className="clock__wrapper d-flex align-items-center gap-3">
       <div className="clock__wrapper d-flex align-items-center gap-3">
         <div className="text-center">
-          <h1 className="text-white fs-3">{days}</h1>
-          <h5 className="text-white fs-6">Days</h5>
+          <h1 className="text-white fs-3 ">{days}</h1>
+          <h5 className="text-white fs-6  ">Days</h5>
         </div>
         <span className="text-white fs-3">:</span>
       </div>
