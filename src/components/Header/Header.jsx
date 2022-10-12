@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Container, Row } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AiOutlineHeart, AiOutlineMenuFold } from "react-icons/ai";
 import { BsHandbagFill } from "react-icons/bs";
 import { motion } from "framer-motion";
@@ -26,12 +26,14 @@ const Header = () => {
       <Container>
         <Row>
           <div className="nav__wrapper">
-            <div className="logo">
-              <img src={logo} alt="logo" />
-              <div className="">
-                <h1>Vincentmart</h1>
+            <Link to={"/"}>
+              <div className="logo">
+                <img src={logo} alt="logo" />
+                <div className="">
+                  <h1>Vincentmart</h1>
+                </div>
               </div>
-            </div>
+            </Link>
 
             <div className="navigation" ref={menuRef} onClick={menuToggle}>
               <ul className="menu">

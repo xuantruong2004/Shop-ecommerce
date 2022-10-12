@@ -48,7 +48,7 @@ const Shop = () => {
       <section>
         <Container>
           <Row>
-            <Col lg="3" md="3">
+            <Col lg="3" md="3" className="box">
               <div className="filter__widget">
                 <select onChange={handleCategory}>
                   <option value="all">Filter by Category</option>
@@ -61,7 +61,7 @@ const Shop = () => {
                 </select>
               </div>
             </Col>
-            <Col lg="3" md="3">
+            <Col lg="3" md="3" className="box">
               <div className="filter__widget">
                 <select onChange={handleSort}>
                   <option>Sort by </option>
