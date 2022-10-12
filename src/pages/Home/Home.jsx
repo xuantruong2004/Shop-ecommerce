@@ -37,6 +37,10 @@ const Home = () => {
     setDataMobiles(productMobiles);
     setDataPopular(productPopular);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="Home">
       <section className="hero__section">

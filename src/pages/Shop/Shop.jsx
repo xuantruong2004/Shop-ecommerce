@@ -42,6 +42,10 @@ const Shop = () => {
     }
     setDataProducts(filterProduct);
   }, [category, sort, search]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <CommonSection title="Products" />
