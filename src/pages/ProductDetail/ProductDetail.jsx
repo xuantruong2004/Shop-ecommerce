@@ -48,7 +48,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [product]);
   return (
     <div className="Product__detail">
       <CommonSection title={productName} />
@@ -64,19 +64,19 @@ const ProductDetail = () => {
                 <div className="Product__rating d-flex align-items-center gap-3">
                   <div>
                     <span>
-                      <i class="ri-star-s-fill"></i>
+                      <i className="ri-star-s-fill"></i>
                     </span>
                     <span>
-                      <i class="ri-star-s-fill"></i>
+                      <i className="ri-star-s-fill"></i>
                     </span>
                     <span>
-                      <i class="ri-star-s-fill"></i>
+                      <i className="ri-star-s-fill"></i>
                     </span>
                     <span>
-                      <i class="ri-star-s-fill"></i>
+                      <i className="ri-star-s-fill"></i>
                     </span>
                     <span>
-                      <i class="ri-star-s-fill"></i>
+                      <i className="ri-star-s-fill"></i>
                     </span>
                   </div>
                   <p>
@@ -146,19 +146,19 @@ const ProductDetail = () => {
 
                         <div className="form__group">
                           <span>
-                            1<i class="ri-star-s-fill"></i>
+                            1<i className="ri-star-s-fill"></i>
                           </span>
                           <span>
-                            2<i class="ri-star-s-fill"></i>
+                            2<i className="ri-star-s-fill"></i>
                           </span>
                           <span>
-                            3<i class="ri-star-s-fill"></i>
+                            3<i className="ri-star-s-fill"></i>
                           </span>
                           <span>
-                            4<i class="ri-star-s-fill"></i>
+                            4<i className="ri-star-s-fill"></i>
                           </span>
                           <span>
-                            5<i class="ri-star-s-fill"></i>
+                            5<i className="ri-star-s-fill"></i>
                           </span>
                         </div>
                         <div className="form__group ">

@@ -72,6 +72,10 @@
   cursor: pointer;
 }
 
+.nav__icons .cart__icon a:hover {
+  color: var(--primary-color);
+}
+
 .nav__icons .user_icon {
   width: 40px;
   height: 40px;

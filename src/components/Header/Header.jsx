@@ -55,10 +55,12 @@ const Header = () => {
                 <span className="badge">1</span>
               </span>
               <span className="cart__icon">
-                <BsHandbagFill />
-                {totalQuantity > 0 && (
-                  <span className="badge">{totalQuantity}</span>
-                )}
+                <Link to={"/cart"}>
+                  <BsHandbagFill />
+                  {totalQuantity > 0 && (
+                    <span className="badge">{totalQuantity}</span>
+                  )}
+                </Link>
               </span>
               <span>
                 <motion.img
