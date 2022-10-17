@@ -16,6 +16,19 @@
         background: #fff;
         border-radius: 5px;
       }
+      .input-errors {
+        border: 1px solid red;
+      }
+    }
+
+    .ImgUser {
+      color: white;
+      display: flex;
+    }
+
+    .errors {
+      color: red;
+      font-size: 0.7rem;
     }
 
     .login__btn {
