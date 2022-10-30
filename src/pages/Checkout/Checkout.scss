@@ -6,16 +6,15 @@
   .form__group {
     width: 100%;
 
-    border: 1px solid var(--card-bg-02);
-    border-radius: 5px;
     margin-top: 10px;
+    display: flex;
 
-    input {
-      width: 100%;
-      padding: 8px 10px;
-      outline: none;
-      border: none;
-      background: transparent;
+    .title {
+      font-weight: normal;
+      margin-right: 10px;
+    }
+    span {
+      font-weight: 500;
     }
   }
 

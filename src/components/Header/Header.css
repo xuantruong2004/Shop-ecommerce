@@ -40,6 +40,10 @@
   cursor: pointer;
 }
 
+.nav__item.userNone {
+  display: none;
+}
+
 .nav__item .active {
   font-weight: 700;
 }
@@ -76,11 +80,51 @@
   color: var(--primary-color);
 }
 
+.nav__icons .user {
+  position: relative;
+}
 .nav__icons .user_icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
   object-fit: cover;
   cursor: pointer;
+}
+
+.nav__icons .username {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 2px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.nav__icons .login {
+  cursor: pointer;
+  font-weight: 600;
+}
+.nav__icons .modalUser {
+  position: absolute;
+  background-color: #fff;
+  top: 60px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+
+  box-shadow: 3px 3px 10px 0px #ddd;
+}
+
+.nav__icons .modalUser .title {
+  font-size: 14px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #0d1a37;
+}
+
+.nav__icons .modalUser .title:hover {
+  background-color: rgb(247, 242, 242);
 }
 
 .mobile__menu {
@@ -113,6 +157,10 @@
     display: none;
   }
 
+  .nav__item.userNone {
+    display: block;
+  }
+
   .menu {
     position: absolute;
     top: 0;
@@ -141,10 +189,16 @@
   .nav__icons .badge {
     font-size: 0.6rem;
   }
-
+  .nav__icons .modalUser {
+    display: none;
+  }
   .nav__icons .user_icon {
     width: 25px;
     height: 25px;
+  }
+
+  .nav__icons .username {
+    display: none;
   }
 
   .mobile__menu {

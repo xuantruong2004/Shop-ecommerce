@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Container, Row } from "reactstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineHeart, AiOutlineMenuFold } from "react-icons/ai";
 import { BsHandbagFill } from "react-icons/bs";
 import { motion } from "framer-motion";
@@ -11,15 +11,31 @@ import logo from "../../assets/images/eco-logo.png";
 import user_icon from "../../assets/images/user-icon.png";
 import { useScrollY } from "../../hook/useScrollY";
 import { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { authActions } from "../../redux/slice/authSlice";
+import { useEffect } from "react";
+import { cartActions } from "../../redux/slice/cartSlice";
 
 const Header = () => {
   const scrollY = useScrollY();
   const menuRef = useRef(null);
+  const [userModal, setUserModal] = useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const user = useSelector((state) => state.auth.authData);
+  const navigate = useNavigate();
+
+  const login = () => {
+    navigate("/login");
+  };
 
   const menuToggle = () => {
     menuRef.current.classList.toggle("active__menu");
+  };
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch(cartActions.deleteAll());
+    dispatch(authActions.LOG_OUT());
   };
   return (
     <header className={scrollY > 80 ? "header sticky__header" : "header"}>
@@ -46,6 +62,21 @@ const Header = () => {
                 <li className="nav__item">
                   <NavLink to={"/cart"}>Cart</NavLink>
                 </li>
+                {user && (
+                  <li className="nav__item userNone">
+                    <NavLink to={"/profile"}>Profile</NavLink>
+                  </li>
+                )}
+                {user && (
+                  <li className="nav__item userNone">
+                    <NavLink to={"/purchase"}>Purchased</NavLink>
+                  </li>
+                )}
+                {user && (
+                  <li className="nav__item userNone" onClick={() => logout()}>
+                    <a href=""> Logout</a>
+                  </li>
+                )}
               </ul>
             </div>
 
@@ -62,14 +93,41 @@ const Header = () => {
                   )}
                 </Link>
               </span>
-              <span>
-                <motion.img
-                  whileTap={{ scale: 0.8 }}
-                  className="user_icon"
-                  src={user_icon}
-                  alt="user_icon"
-                />
-              </span>
+              {user ? (
+                <span onClick={() => setUserModal(!userModal)} className="user">
+                  <motion.img
+                    className="user_icon"
+                    whileTap={{ scale: 0.8 }}
+                    src={
+                      user?.user?.profileImage
+                        ? user?.user?.profileImage
+                        : user_icon
+                    }
+                    alt="user_icon"
+                  />
+                  <span className="username">{user?.user.username}</span>
+                  {userModal && (
+                    <div className="modalUser">
+                      <h5 className="title">
+                        {" "}
+                        <NavLink to={"/profile"}>Profile</NavLink>
+                      </h5>
+                      <h5 className="title">
+                        {" "}
+                        <NavLink to={"/purchase"}>Purchased</NavLink>
+                      </h5>
+                      <h5 className="title" onClick={() => logout()}>
+                        {" "}
+                        <NavLink to={"/"}>Logout</NavLink>
+                      </h5>
+                    </div>
+                  )}
+                </span>
+              ) : (
+                <span className="login" onClick={login}>
+                  Login
+                </span>
+              )}
               <div className="mobile__menu" onClick={menuToggle}>
                 <span>
                   <AiOutlineMenuFold />

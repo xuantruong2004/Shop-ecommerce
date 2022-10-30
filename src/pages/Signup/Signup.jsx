@@ -1,40 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Col, Container, Row } from "reactstrap";
-import { motion } from "framer-motion";
 import { useFormik } from "formik";
+import { motion } from "framer-motion";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
 import { userSechema } from "../../components/Form/schema";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
-import { setDoc, doc } from "firebase/firestore";
-
-import { auth } from "../../firebase.config";
-import { storage, db } from "../../firebase.config";
-import { toast } from "react-toastify";
 
 import "../Login/Login.scss";
 
-import InputField from "../../components/Form/InputField";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../actions/AuthAction";
+import InputField from "../../components/Form/InputField";
 
 const SignUp = () => {
-  const [file, setFile] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loading = useSelector((state) => state.auth.loading);
   const onSubmit = async (values, actions) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
-      const user = userCredential.user;
-      const storageRef = ref(storage, `image/${Date.now() + values.username}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      console.log(user);
+      await dispatch(signUp(values));
+      navigate("/");
     } catch (error) {
       console.log("Sign up firebase error");
     }
-    actions.resetForm();
   };
   const {
     values,
@@ -54,6 +42,10 @@ const SignUp = () => {
     validationSchema: userSechema,
     onSubmit,
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="Login">
       <section>
@@ -106,10 +98,6 @@ const SignUp = () => {
                       touched={touched}
                       type="password"
                     />
-                  </div>
-                  <div className="ImgUser">
-                    <span>Image user</span>
-                    <input type="file" />
                   </div>
                   <motion.button
                     whileTap={{ scale: 0.8 }}

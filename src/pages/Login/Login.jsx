@@ -1,19 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
 
 import "./Login.scss";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "../../actions/AuthAction";
+import { useEffect } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onLogin = (e) => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
+  const onLogin = async (e) => {
     e.preventDefault();
-    console.log({ email, password });
+    try {
+      await dispatch(logIn(data));
+      const user = JSON.parse(localStorage.getItem("profile"));
+      if (user) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="Login">
       <section>
@@ -25,18 +47,20 @@ const Login = () => {
                 <form action="">
                   <div className="form__group">
                     <input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={data.email}
+                      type="text"
+                      placeholder="email"
+                      name="email"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="form__group">
                     <input
+                      value={data.password}
                       type="password"
-                      placeholder="Enter your password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="password"
+                      name="password"
+                      onChange={handleChange}
                     />
                   </div>
                   <motion.button
