@@ -7,15 +7,13 @@ import { userSechema } from "../../components/Form/schema";
 
 import "../Login/Login.scss";
 
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signUp } from "../../actions/AuthAction";
 import InputField from "../../components/Form/InputField";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loading = useSelector((state) => state.auth.loading);
   const onSubmit = async (values, actions) => {
     try {
       await dispatch(signUp(values));

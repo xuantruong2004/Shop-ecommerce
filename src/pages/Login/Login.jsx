@@ -1,13 +1,12 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import { motion } from "framer-motion";
 
-import "./Login.scss";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { logIn } from "../../actions/AuthAction";
-import { useEffect } from "react";
+import "./Login.scss";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -16,7 +15,6 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.loading);
   const onLogin = async (e) => {
     e.preventDefault();
     try {

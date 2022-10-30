@@ -1,19 +1,13 @@
 import React, { useEffect } from "react";
-import { BiMinus, BiPlus } from "react-icons/bi";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { Col, Container, Row } from "reactstrap";
-import { motion } from "framer-motion";
 import CommonSection from "../../components/UI/CommonSection";
 
-import { cartActions } from "../../redux/slice/cartSlice";
+import moment from "moment/moment";
+import { useState } from "react";
 import * as BillApi from "../../api/BillRequest";
 import "./Cart.scss";
-import { useState } from "react";
-import moment from "moment/moment";
 
 const Purchase = () => {
   const user = useSelector((state) => state.auth.authData);
@@ -26,7 +20,7 @@ const Purchase = () => {
     if (user) {
       fecthData();
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

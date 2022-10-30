@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import CommonSection from "../../components/UI/CommonSection";
 import { Col, Container, Row } from "reactstrap";
 import * as UserApi from "../../api/UserRequest.js";
+import CommonSection from "../../components/UI/CommonSection";
 
-import "./Profile.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./Profile.scss";
 
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase.config";
@@ -14,7 +14,6 @@ import { storage } from "../../firebase.config";
 import { updateUser } from "../../actions/userAction";
 // import user_icon from "../../assets/images/user-icon.png";
 import user_icon from "../../assets/images/user-icon.png";
-import Loader from "./Loader";
 
 const Profile = () => {
   const user = useSelector((state) => state.auth.authData);
@@ -30,7 +29,7 @@ const Profile = () => {
     if (user) {
       fetchProfileUser();
     }
-  }, []);
+  }, [user]);
 
   const handleChange = (e) => {
     setProfile({
