@@ -93,8 +93,8 @@
 
 .nav__icons .username {
   font-size: 12px;
-  font-weight: 500;
-  padding: 0 2px;
+  font-weight: 600;
+  margin-left: 4px;
   color: var(--primary-color);
   cursor: pointer;
 }
