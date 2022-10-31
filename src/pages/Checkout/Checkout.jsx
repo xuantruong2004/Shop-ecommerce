@@ -20,19 +20,23 @@ const Checkout = () => {
 
   const order = async () => {
     if (user) {
-      toast.success("order is successfully");
-      cartOder.forEach(async (item) => {
-        await BillApi.createBill({
-          userId: user.user._id,
-          productId: item.id,
-          image: item.image,
-          price: item.price,
-          productName: item.productName,
-          quantity: item.quantity,
-          totalPrice: item.totalPrice,
+      if (cartOder.length > 0) {
+        cartOder.forEach(async (item) => {
+          await BillApi.createBill({
+            userId: user.user._id,
+            productId: item.id,
+            image: item.image,
+            price: item.price,
+            productName: item.productName,
+            quantity: item.quantity,
+            totalPrice: item.totalPrice,
+          });
         });
-      });
-      dispatch(cartActions.deleteAll());
+        toast.success("order is successfully");
+        dispatch(cartActions.deleteAll());
+      } else {
+        toast.warn("cart is empty, Please buy product");
+      }
     } else {
       navigate("/login");
     }

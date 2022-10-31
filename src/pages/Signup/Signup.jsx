@@ -7,17 +7,21 @@ import { userSechema } from "../../components/Form/schema";
 
 import "../Login/Login.scss";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../actions/AuthAction";
 import InputField from "../../components/Form/InputField";
 
 const SignUp = () => {
+  const loading = useSelector((state) => state.auth.loading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmit = async (values, actions) => {
     try {
       await dispatch(signUp(values));
-      navigate("/");
+      const user = JSON.parse(localStorage.getItem("profile"));
+      if (user) {
+        navigate("/");
+      }
     } catch (error) {
       console.log("Sign up firebase error");
     }
@@ -103,7 +107,7 @@ const SignUp = () => {
                     disabled={isSubmitting}
                     type="submit"
                   >
-                    Create an account
+                    {loading ? "loading..." : "Create an account"}
                   </motion.button>
                   <p>
                     Already have an account? <Link to={"/login"}>Login</Link>{" "}

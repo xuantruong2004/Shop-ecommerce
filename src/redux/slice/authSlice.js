@@ -20,28 +20,32 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     AUTH_START: (state, action) => {
-      state.loading = false;
+      state.loading = true;
     },
 
     AUTH_SUCCESS: (state, action) => {
       localStorage.setItem("profile", JSON.stringify({ ...action?.payload }));
       state.authData = action.payload;
+      state.loading = false;
     },
 
     AUTH_FAIL: (state, action) => {
+      state.loading = false;
       state.error = true;
     },
     UPDATE_START: (state, action) => {
-      state.loading = false;
+      state.loading = true;
     },
 
     UPDATE_SUCCESS: (state, action) => {
       localStorage.setItem("profile", JSON.stringify({ ...action?.payload }));
       state.authData = action.payload;
+      state.loading = false;
     },
 
     UPDATE_FAIL: (state, action) => {
       state.error = true;
+      state.loading = false;
     },
 
     LOG_OUT: (state, action) => {

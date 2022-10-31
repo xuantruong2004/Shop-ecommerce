@@ -19,6 +19,7 @@ const Profile = () => {
   const user = useSelector((state) => state.auth.authData);
   const [profile, setProfile] = useState(user?.user);
   const [isLodaing, setIsLoading] = useState(false);
+  const loading = useSelector((state) => state.auth.loading);
 
   useEffect(() => {
     const fetchProfileUser = async () => {
@@ -104,7 +105,7 @@ const Profile = () => {
               <label htmlFor="file">Update Image</label>
             </Col>
             <Col lg="9" md="6">
-              <h1 className="text-center">Information</h1>
+              <h4 className="text-center">Information</h4>
               <form className="form">
                 <div className="form__group">
                   <span>User name</span>
@@ -170,7 +171,7 @@ const Profile = () => {
                   className="button"
                   onClick={handleUpdate}
                 >
-                  Save
+                  {loading ? "loading..." : "Save"}
                 </motion.button>
               </form>
             </Col>

@@ -11,11 +11,13 @@ import "./Cart.scss";
 
 const Purchase = () => {
   const user = useSelector((state) => state.auth.authData);
+  const [loading, setLoading] = useState(true);
   const [purchase, setPurchase] = useState([]);
   useEffect(() => {
     const fecthData = async () => {
       const { data } = await BillApi.getTimeLine(user.user._id);
       setPurchase(data);
+      setLoading(false);
     };
     if (user) {
       fecthData();
@@ -29,7 +31,11 @@ const Purchase = () => {
     <div className="Cart">
       <CommonSection title="Purchase order" />
 
-      {purchase?.length > 0 ? (
+      {loading ? (
+        <section>
+          <h3 className="text-center">Loading...</h3>
+        </section>
+      ) : purchase?.length > 0 ? (
         <section>
           <Container>
             <Row>

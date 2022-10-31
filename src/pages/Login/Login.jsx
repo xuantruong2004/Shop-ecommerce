@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../actions/AuthAction";
 import "./Login.scss";
 
@@ -13,6 +13,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const loading = useSelector((state) => state.auth.loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onLogin = async (e) => {
@@ -30,6 +32,8 @@ const Login = () => {
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+
+  console.log(loading);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -65,8 +69,9 @@ const Login = () => {
                     whileTap={{ scale: 0.8 }}
                     className="login__btn"
                     onClick={onLogin}
+                    disabled={loading}
                   >
-                    Login
+                    {loading ? "loading..." : "Login"}
                   </motion.button>
                   <p>
                     Don't have a account?{" "}
