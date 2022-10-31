@@ -16,6 +16,7 @@ import { useState } from "react";
 import { authActions } from "../../redux/slice/authSlice";
 import { useEffect } from "react";
 import { cartActions } from "../../redux/slice/cartSlice";
+import { logout } from "../../actions/AuthAction";
 
 const Header = () => {
   const scrollY = useScrollY();
@@ -33,9 +34,9 @@ const Header = () => {
     menuRef.current.classList.toggle("active__menu");
   };
   const dispatch = useDispatch();
-  const logout = () => {
+  const handleLogout = () => {
     dispatch(cartActions.deleteAll());
-    dispatch(authActions.LOG_OUT());
+    dispatch(logout());
   };
   return (
     <header className={scrollY > 80 ? "header sticky__header" : "header"}>
@@ -73,7 +74,10 @@ const Header = () => {
                   </li>
                 )}
                 {user && (
-                  <li className="nav__item userNone" onClick={() => logout()}>
+                  <li
+                    className="nav__item userNone"
+                    onClick={() => handleLogout()}
+                  >
                     <a href=""> Logout</a>
                   </li>
                 )}
@@ -116,7 +120,7 @@ const Header = () => {
                         {" "}
                         <NavLink to={"/purchase"}>Purchased</NavLink>
                       </h5>
-                      <h5 className="title" onClick={() => logout()}>
+                      <h5 className="title" onClick={() => handleLogout()}>
                         {" "}
                         <NavLink to={"/"}>Logout</NavLink>
                       </h5>
