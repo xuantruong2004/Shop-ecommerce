@@ -29,6 +29,6 @@ export const signUp = (formData) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  dispatch(authActions.LOG_OUT());
   toast.success("logout is successfully");
+  dispatch(authActions.LOG_OUT());
 };
