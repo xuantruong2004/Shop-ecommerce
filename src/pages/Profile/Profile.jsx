@@ -69,7 +69,6 @@ const Profile = () => {
   const dispatch = useDispatch();
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log(profile);
     dispatch(updateUser(user.user._id, profile));
   };
 

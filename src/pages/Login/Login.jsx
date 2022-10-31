@@ -33,8 +33,6 @@ const Login = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  console.log(loading);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
