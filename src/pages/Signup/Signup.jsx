@@ -23,7 +23,7 @@ const SignUp = () => {
         navigate("/");
       }
     } catch (error) {
-      console.log("Sign up firebase error");
+      console.log("Sign up  error");
     }
   };
   const {

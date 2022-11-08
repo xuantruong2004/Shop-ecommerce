@@ -141,6 +141,10 @@ const Header = () => {
           </div>
         </Row>
       </Container>
+
+      {userModal && (
+        <div className="bgModal" onClick={() => setUserModal(false)}></div>
+      )}
     </header>
   );
 };
