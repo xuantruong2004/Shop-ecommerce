@@ -19,7 +19,7 @@ const ProductCard = ({ item, location }) => {
     dispatch(
       cartActions.addItem({
         id: item._id,
-        productName: item.productName,
+        productName: item.productname,
         image: item.imgUrl,
         price: item.price,
       })
