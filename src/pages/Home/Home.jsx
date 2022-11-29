@@ -8,10 +8,11 @@ import counterTime from "../../assets/images/counter-timer-img.png";
 import "./Home.scss";
 import Service from "../../components/Service/Service";
 import ProductList from "../../components/UI/ProductList";
-import products from "../../assets/data/products";
+// import products from "../../assets/data/products";
 import { useState } from "react";
 import { useEffect } from "react";
 import Clock from "../../components/Clock/Clock";
+import * as productApi from "../../api/ProductRequest";
 
 const Home = () => {
   const [dataTrending, setDataTrending] = useState([]);
@@ -22,20 +23,27 @@ const Home = () => {
   const year = new Date().getFullYear();
 
   useEffect(() => {
-    const productTrending = products.filter(
-      (item) => item.category === "chair"
-    );
-    const productBestSales = products.filter(
-      (item) => item.category === "sofa"
-    );
-    const productMobiles = products.filter(
-      (item) => item.category === "mobile" || item.category === "wireless"
-    );
-    const productPopular = products.filter((item) => item.category === "watch");
-    setDataTrending(productTrending);
-    setDataBestSales(productBestSales);
-    setDataMobiles(productMobiles);
-    setDataPopular(productPopular);
+    const fetchProducts = async () => {
+      const { data: products } = await productApi.getAllProducts();
+      const productTrending = products.filter(
+        (item) => item.category === "chair"
+      );
+      const productBestSales = products.filter(
+        (item) => item.category === "sofa"
+      );
+      const productMobiles = products.filter(
+        (item) => item.category === "mobile" || item.category === "wireless"
+      );
+      const productPopular = products.filter(
+        (item) => item.category === "watch"
+      );
+      setDataTrending(productTrending);
+      setDataBestSales(productBestSales);
+      setDataMobiles(productMobiles);
+      setDataPopular(productPopular);
+    };
+
+    fetchProducts();
   }, []);
 
   useEffect(() => {

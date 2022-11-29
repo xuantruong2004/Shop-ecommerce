@@ -21,3 +21,11 @@ export const userSechema = yup.object().shape({
     .oneOf([yup.ref("password"), null, "password must match"])
     .required("Field is required"),
 });
+
+export const productSechema = yup.object().shape({
+  productname: yup.string().required("field is required"),
+  shortDescription: yup.string().required("field is required"),
+  description: yup.string().required("field is required"),
+  price: yup.number().required("Field is required"),
+  category: yup.string().required("field is required"),
+});

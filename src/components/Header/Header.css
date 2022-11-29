@@ -156,6 +156,11 @@
   box-shadow: 3px 3px 8px -3px #ddd;
 }
 
+@media screen and (max-width: 1000px) {
+  .nav__icons .fav__icon {
+    display: none;
+  }
+}
 @media screen and (max-width: 768px) {
   .navigation {
     position: fixed;

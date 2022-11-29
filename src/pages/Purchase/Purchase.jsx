@@ -57,7 +57,7 @@ const Purchase = () => {
                         <th className="text-center">
                           <img
                             className="image"
-                            src={item.image}
+                            src={item?.image}
                             alt="imageProduct"
                           />
                         </th>

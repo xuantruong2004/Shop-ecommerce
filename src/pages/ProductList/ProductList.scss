@@ -1,0 +1,17 @@
+.admin-wrapper {
+  display: flex;
+  background-color: var(--body-bg);
+  padding: 0 100px;
+  min-height: 100vh;
+
+  .sidebar {
+    flex: 1;
+  }
+  .productList {
+    flex: 4;
+    section {
+      padding: 20px;
+      background-color: white;
+    }
+  }
+}

@@ -38,6 +38,7 @@ const Header = () => {
     dispatch(cartActions.deleteAll());
     dispatch(logout());
   };
+
   return (
     <header className={scrollY > 80 ? "header sticky__header" : "header"}>
       <Container>
@@ -63,6 +64,11 @@ const Header = () => {
                 <li className="nav__item">
                   <NavLink to={"/cart"}>Cart</NavLink>
                 </li>
+                {user?.user?.isAdmin && (
+                  <li className="nav__item">
+                    <NavLink to={"/dashboard/home"}>Admin</NavLink>
+                  </li>
+                )}
                 {user && (
                   <li className="nav__item userNone">
                     <NavLink to={"/profile"}>Profile</NavLink>

@@ -12,21 +12,24 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slice/cartSlice";
 import { useState } from "react";
 import ProductList from "../../components/UI/ProductList";
+import * as productApi from "../../api/ProductRequest";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const product = products.find((item) => item.id === id);
+  const [product, setProduct] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  useEffect(() => {
+    const fetchItem = async (id) => {
+      const { data: product } = await productApi.getProduct(id);
 
-  const {
-    avgRating,
-    category,
-    description,
-    imgUrl,
-    price,
-    productName,
-    reviews,
-    shortDesc,
-  } = product;
+      setProduct(product);
+      if (product) {
+        const { data } = await productApi.getCategory(product.category);
+        setProductCategory(data);
+      }
+    };
+    fetchItem(id);
+  }, [id]);
 
   const dispatch = useDispatch();
   const [isDesc, setIsDesc] = useState(true);
@@ -35,32 +38,30 @@ const ProductDetail = () => {
     dispatch(
       cartActions.addItem({
         id: id,
-        productName: productName,
-        image: imgUrl,
-        price: price,
+        productName: product.productname,
+        image: product.imgUrl,
+        price: product.price,
       })
     );
 
     toast.success("Product added successfully ");
   };
 
-  const typeProducts = products.filter((item) => item.category === category);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [product]);
   return (
     <div className="Product__detail">
-      <CommonSection title={productName} />
+      <CommonSection title={product?.productname} />
       <section className="pt-0">
         <Container>
           <Row>
             <Col lg="6">
-              <img src={imgUrl} alt="" />
+              <img src={product?.imgUrl} alt="" />
             </Col>
             <Col lg="6" className="Product__box">
               <div className="Product__info">
-                <h2>{productName}</h2>
+                <h2>{product?.productname}</h2>
                 <div className="Product__rating d-flex align-items-center gap-3">
                   <div>
                     <span>
@@ -80,14 +81,16 @@ const ProductDetail = () => {
                     </span>
                   </div>
                   <p>
-                    (<span>{avgRating}</span> ratings)
+                    (<span>5</span> ratings)
                   </p>
                 </div>
                 <div className="d-flex align-items-center gap-5">
-                  <span className="price">${price}</span>
-                  <span className="category">category: {category}</span>
+                  <span className="price">${product?.price}</span>
+                  <span className="category">
+                    category: {product?.category}
+                  </span>
                 </div>
-                <p className="my-3">{shortDesc}</p>
+                <p className="my-3">{product?.shortDescription}</p>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   className="buy__btn"
@@ -116,19 +119,19 @@ const ProductDetail = () => {
                   className={isDesc ? "" : "tab__active"}
                   onClick={() => setIsDesc(!isDesc)}
                 >
-                  Reviews({reviews.length})
+                  Reviews
                 </h6>
               </div>
 
               {isDesc ? (
                 <div className="tab__content mt-4">
-                  <p>{description}</p>
+                  <p>{product?.description}</p>
                 </div>
               ) : (
                 <div className="product__review mt-5">
                   <div className="review__wrapper">
                     <ul className="p-0">
-                      {reviews.map((item, idx) => (
+                      {[].map((item, idx) => (
                         <li key={idx}>
                           <h6>Jon Vicent</h6>
                           <span>{item.rating} (rating)</span>
@@ -189,7 +192,7 @@ const ProductDetail = () => {
                 You might also like
               </h2>
             </Col>
-            <ProductList data={typeProducts} />
+            {productCategory && <ProductList data={productCategory} />}
           </Row>
         </Container>
       </section>

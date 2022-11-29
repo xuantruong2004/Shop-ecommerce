@@ -8,12 +8,26 @@ import products from "../../assets/data/products";
 import { useState } from "react";
 import ProductList from "../../components/UI/ProductList";
 import { useEffect } from "react";
+import * as productApi from "../../api/ProductRequest";
 
 const Shop = () => {
-  const [dataProducts, setDataProducts] = useState(products);
+  const [dataProducts, setDataProducts] = useState("");
+  const [products, setProducts] = useState("");
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const fetchProduct = async () => {
+      const { data } = await productApi.getAllProducts();
+      setDataProducts(data);
+      setProducts(data);
+      setLoading(false);
+    };
+    fetchProduct();
+  }, []);
 
   const handleCategory = (e) => {
     setCategory(e.target.value);
@@ -27,20 +41,22 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    let filterProduct = products.filter(
-      (item) =>
-        (item.category === category || category === "all") &&
-        item.productName.toLowerCase().includes(search.toLowerCase())
-    );
+    if (dataProducts) {
+      let filterProduct = dataProducts.filter(
+        (item) =>
+          (item.category === category || category === "all") &&
+          item.productname.toLowerCase().includes(search.toLowerCase())
+      );
 
-    if (sort === "ascending") {
-      filterProduct = filterProduct.sort((a, b) => a.price - b.price);
-    } else {
-      if (sort === "descending") {
-        filterProduct = filterProduct.sort((a, b) => b.price - a.price);
+      if (sort === "ascending") {
+        filterProduct = filterProduct.sort((a, b) => a.price - b.price);
+      } else {
+        if (sort === "descending") {
+          filterProduct = filterProduct.sort((a, b) => b.price - a.price);
+        }
       }
+      setProducts(filterProduct);
     }
-    setDataProducts(filterProduct);
   }, [category, sort, search]);
 
   useEffect(() => {
@@ -90,8 +106,10 @@ const Shop = () => {
       <section className="pt-0">
         <Container>
           <Row>
-            {dataProducts.length > 0 ? (
-              <ProductList data={dataProducts} />
+            {loading ? (
+              <h1 className="text-center fs-3">Loading...</h1>
+            ) : products.length > 0 ? (
+              <ProductList data={products} />
             ) : (
               <h1 className="text-center fs-3">No products are found</h1>
             )}

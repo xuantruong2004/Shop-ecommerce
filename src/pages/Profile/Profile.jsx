@@ -145,16 +145,7 @@ const Profile = () => {
                     value={profile.city}
                   />
                 </div>
-                {/* <div className="form__group">
-                  <span>Postal code</span>
 
-                  <input
-                    type="text"
-                    name="address"
-                    onChange={handleChange}
-                    value={profile.address}
-                  />
-                </div> */}
                 <div className="form__group">
                   <span>Country</span>
 

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
+import { AiOutlineDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Col } from "reactstrap";
@@ -10,13 +12,13 @@ import { Link } from "react-router-dom";
 import { cartActions } from "../../redux/slice/cartSlice";
 import "./ProductCard.scss";
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, location }) => {
   const dispatch = useDispatch();
 
   const addItem = () => {
     dispatch(
       cartActions.addItem({
-        id: item.id,
+        id: item._id,
         productName: item.productName,
         image: item.imgUrl,
         price: item.price,
@@ -34,16 +36,28 @@ const ProductCard = ({ item }) => {
         </motion.div>
         <div className="p-2 product__info">
           <h3 className="product__name">
-            <Link to={`/shop/${item.id}`}>{item.productName}</Link>
+            <Link to={`/shop/${item._id}`}>{item.productname}</Link>
           </h3>
           <span className="text-center">{item.category}</span>
         </div>
         <div className="product__card d-flex align-items-center justify-content-between p-2">
           <span className="price">${item.price}</span>
-          <motion.div whileTap={{ scale: 1.2 }} onClick={addItem}>
-            <BsFillPlusCircleFill className="icon" />
-          </motion.div>
+          {!location && (
+            <motion.div whileTap={{ scale: 1.2 }} onClick={addItem}>
+              <BsFillPlusCircleFill className="icon" />
+            </motion.div>
+          )}
         </div>
+        {location === "dashboard" && (
+          <div className="edit">
+            <FiEdit />
+          </div>
+        )}
+        {location === "dashboard" && (
+          <div className="delete">
+            <AiOutlineDelete />
+          </div>
+        )}
       </div>
     </Col>
   );

@@ -1,0 +1,18 @@
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0 0;
+  .item {
+    padding: 10px 12px;
+    color: aliceblue;
+    cursor: pointer;
+    &:hover {
+      background-color: #242a47;
+      color: white;
+    }
+  }
+  .active {
+    background-color: #242a47;
+    color: white;
+  }
+}
