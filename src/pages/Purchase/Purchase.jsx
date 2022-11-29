@@ -62,7 +62,7 @@ const Purchase = () => {
                           />
                         </th>
                         <th className="text-center">
-                          <span>{item.productname}</span>
+                          <span>{item.productName}</span>
                         </th>
                         <th className="text-center">
                           <span>${item.price}</span>
