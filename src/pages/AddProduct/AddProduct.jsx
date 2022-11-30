@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import * as productApi from "../../api/ProductRequest";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import productImage from "../../assets/images/image-load.jpeg";
 
 const AddProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -204,6 +205,10 @@ const AddProduct = () => {
               onChange={upLoadImage}
             />
             {errorImage && <span className="errors">File is require</span>}
+          </div>
+
+          <div className="image-product">
+            {image && <img src={image} alt="" />}
           </div>
 
           <motion.button

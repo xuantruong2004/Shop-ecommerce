@@ -11,8 +11,10 @@ import { useDispatch } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { cartActions } from "../../redux/slice/cartSlice";
 import "./ProductCard.scss";
+import { useState } from "react";
+import * as productApi from "../../api/ProductRequest";
 
-const ProductCard = ({ item, location }) => {
+const ProductCard = ({ item, location, handleDelete }) => {
   const dispatch = useDispatch();
 
   const addItem = () => {
@@ -32,6 +34,10 @@ const ProductCard = ({ item, location }) => {
   const EditProduct = () => {
     navigate(`/dashboard/add-product/${item._id}`);
     console.log("edit");
+  };
+
+  const Delete = () => {
+    handleDelete(item);
   };
 
   return (
@@ -60,7 +66,7 @@ const ProductCard = ({ item, location }) => {
           </div>
         )}
         {location === "dashboard" && (
-          <div className="delete">
+          <div className="delete" onClick={Delete}>
             <AiOutlineDelete />
           </div>
         )}

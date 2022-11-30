@@ -6,6 +6,7 @@ import { BiSearch } from "react-icons/bi";
 import ProductList from "../../components/UI/ProductList";
 import { useEffect } from "react";
 import * as productApi from "../../api/ProductRequest";
+import { toast } from "react-toastify";
 
 const ProductLists = () => {
   const [dataProducts, setDataProducts] = useState("");
@@ -54,6 +55,28 @@ const ProductLists = () => {
       setProducts(filterProduct);
     }
   }, [category, sort, search]);
+
+  const handleDelete = (item) => {
+    if (window.confirm(`ban co muon xoa ${item.productname}`)) {
+      const fetchApi = async (item) => {
+        try {
+          console.log(item._id);
+          const { data } = await productApi.deleteProduct(item._id);
+          console.log(data);
+          const productsNew = products.filter(
+            (product) => product._id !== item._id
+          );
+          setProducts(productsNew);
+          toast.success("Delete Product successfully ");
+        } catch (error) {
+          console.log(error);
+          toast.success("Delete Product failed ");
+        }
+      };
+      fetchApi(item);
+    }
+  };
+
   return (
     <div className="admin-wrapper">
       <div className="sidebar">
@@ -104,7 +127,11 @@ const ProductLists = () => {
               {loading ? (
                 <h1 className="text-center fs-3">Loading...</h1>
               ) : products.length > 0 ? (
-                <ProductList data={products} location={"dashboard"} />
+                <ProductList
+                  data={products}
+                  location={"dashboard"}
+                  handleDelete={handleDelete}
+                />
               ) : (
                 <h1 className="text-center fs-3">No products are found</h1>
               )}

@@ -9,7 +9,7 @@
   }
   .add-product {
     flex: 4;
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 20px 20px;
     flex: 4;
     background: #0b0c28;
     color: white;
@@ -46,6 +46,17 @@
 
         .errors {
           color: red;
+        }
+      }
+
+      .image-product {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
         }
       }
 

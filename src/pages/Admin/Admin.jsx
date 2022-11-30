@@ -11,6 +11,7 @@ import * as productsApi from "../../api/ProductRequest";
 import * as billApi from "../../api/BillRequest";
 import * as userApi from "../../api/UserRequest";
 import productImage from "../../assets/images/image-load.jpeg";
+import { Link } from "react-router-dom";
 
 function Admin() {
   const [products, setProducts] = useState("");
@@ -114,7 +115,7 @@ function Admin() {
             <MdOutlineAttachMoney className="item-right" />
           </div>
         </div>
-        <div className="chart">chart</div>
+        {/* <div className="chart">chart</div> */}
         <div className="best-box">
           <div className="best-sell">
             <h6>best sell</h6>
@@ -124,7 +125,10 @@ function Admin() {
               }
               alt="imagePhoto"
             />
-            <h4>{productBestSell?.productname}</h4>
+            <Link to={`/shop/${productBestSell._id}`}>
+              <h4>{productBestSell?.productname}</h4>
+            </Link>
+
             <div>
               <p>category: {productBestSell?.category}</p>
               <h6>{productBestSell?.price}$</h6>
@@ -132,12 +136,15 @@ function Admin() {
             <h6>Sold: {quantityBestSell}</h6>
           </div>
           <div className="best-sell">
-            <h6>Product Luxury</h6>
+            <h6>Best Luxury</h6>
             <img
               src={productLuxury?.imgUrl ? productLuxury?.imgUrl : productImage}
               alt="imagePhoto"
             />
-            <h4>{productLuxury?.productname}</h4>
+            <Link to={`/shop/${productLuxury._id}`}>
+              <h4>{productLuxury?.productname}</h4>
+            </Link>
+
             <div>
               <p>category: {productLuxury?.category}</p>
               <h6>{productLuxury?.price}$</h6>

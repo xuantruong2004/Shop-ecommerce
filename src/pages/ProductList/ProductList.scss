@@ -3,12 +3,14 @@
   background-color: var(--body-bg);
   padding: 0 100px;
   min-height: 100vh;
+  position: relative;
 
   .sidebar {
     flex: 1;
   }
   .productList {
     flex: 4;
+    position: relative;
 
     .search__box {
       input {
@@ -23,5 +25,15 @@
       max-height: 600px;
       overflow-y: auto;
     }
+
+    // .modal {
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 50%;
+    //   background: red;
+    //   z-index: 2000;
+    //   width: 100vh;
+    //   height: 100vh;
+    // }
   }
 }

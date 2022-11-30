@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA4M50oSbFvzwo1jr5GD-pLJWLRlAeleLg",
-  authDomain: "vincentmart-49965.firebaseapp.com",
-  projectId: "vincentmart-49965",
-  storageBucket: "vincentmart-49965.appspot.com",
-  messagingSenderId: "639075415954",
-  appId: "1:639075415954:web:97b90a122503cc3c69b34b",
+  apiKey: "AIzaSyBKczbl_9TJf8Hr9XBu5kLtvr9tOdjirUM",
+  authDomain: "vincent-mart.firebaseapp.com",
+  projectId: "vincent-mart",
+  storageBucket: "vincent-mart.appspot.com",
+  messagingSenderId: "376364391856",
+  appId: "1:376364391856:web:018b771b5142eb52488a75",
 };
 
 // Initialize Firebase
