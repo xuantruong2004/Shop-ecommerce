@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase.config";
 
@@ -11,12 +11,23 @@ import { productSechema } from "../../components/Form/schema";
 import { motion } from "framer-motion";
 import * as productApi from "../../api/ProductRequest";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 const AddProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState("");
   const [errorImage, setErrorImage] = useState(false);
+  const [product, setProduct] = useState({
+    productname: "",
+    shortDescription: "",
+    description: "",
+    price: "",
+    category: "",
+    imaUrl: "",
+  });
 
+  const param = useParams();
+  const id = param?.id;
   const onSubmit = async (values, actions) => {
     setIsLoading(true);
     if (!image) {
@@ -37,6 +48,28 @@ const AddProduct = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    const fetchApi = async () => {
+      const { data } = await productApi.getProduct(id);
+      setProduct({
+        productname: data.productname,
+        shortDescription: data.shortDescription,
+        description: data.description,
+        price: data.price,
+        category: data.category,
+        imgUrl: data.imgUrl,
+      });
+    };
+    if (id) {
+      fetchApi();
+    }
+  }, []);
+
+  useEffect(() => {
+    setProduct(product);
+    console.log(product);
+  }, [product?.productname]);
+
   const {
     values,
     errors,
@@ -46,17 +79,11 @@ const AddProduct = () => {
     handleBlur,
     handleSubmit,
   } = useFormik({
-    initialValues: {
-      productname: "",
-      shortDescription: "",
-      description: "",
-      price: "",
-      category: "",
-      imaUrl: "",
-    },
+    initialValues: product,
     validationSchema: productSechema,
     onSubmit,
   });
+
   const upLoadImage = async (e) => {
     setIsLoading(true);
     const imageFile = e.target.files[0];

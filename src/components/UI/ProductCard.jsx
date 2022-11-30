@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Col } from "reactstrap";
 
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { cartActions } from "../../redux/slice/cartSlice";
 import "./ProductCard.scss";
 
@@ -26,6 +26,12 @@ const ProductCard = ({ item, location }) => {
     );
 
     toast.success("Product added successfully ");
+  };
+
+  const navigate = useNavigate();
+  const EditProduct = () => {
+    navigate(`/dashboard/add-product/${item._id}`);
+    console.log("edit");
   };
 
   return (
@@ -49,7 +55,7 @@ const ProductCard = ({ item, location }) => {
           )}
         </div>
         {location === "dashboard" && (
-          <div className="edit">
+          <div className="edit" onClick={EditProduct}>
             <FiEdit />
           </div>
         )}

@@ -45,6 +45,10 @@ const Routers = () => {
         element={user?.user?.isAdmin ? <AddProduct /> : <Navigate to={"/"} />}
       />
       <Route
+        path="dashboard/add-product/:id"
+        element={user?.user?.isAdmin ? <AddProduct /> : <Navigate to={"/"} />}
+      />
+      <Route
         path="dashboard/bills"
         element={user?.user?.isAdmin ? <Bills /> : <Navigate to={"/"} />}
       />

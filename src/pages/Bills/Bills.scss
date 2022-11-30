@@ -8,16 +8,16 @@
     flex: 1;
   }
 
-  .dashBoard {
+  .bills {
     padding: 20px 20px 20px 20px;
-    flex: 4;
+    flex: 5;
     background: #0b0c28;
     color: white;
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    .overview {
+    .bill-top {
       display: flex;
       justify-content: space-between;
       .item {
@@ -55,31 +55,35 @@
         background-color: var(--card-04-bg);
       }
     }
-
-    .best-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .best-sell {
-        background-color: #e3ebf1;
-        color: #0b0c28;
-        padding: 20px;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        width: 48%;
-
+    .billList {
+      .table {
+        color: white;
         img {
-          height: 300px;
-          width: 100%;
+          width: 70px;
+          height: 70px;
           object-fit: cover;
         }
-        div {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+
+        thead {
+          tr {
+            th {
+              .text {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+
+        .box-body {
+          max-height: 600px;
+          overflow-y: auto;
+        }
+
+        tbody {
+          span {
+            font-size: 14px;
+            font-weight: 400;
+          }
         }
       }
     }
