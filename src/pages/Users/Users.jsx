@@ -15,7 +15,6 @@ const Users = () => {
     const fetch = async () => {
       const { data } = await userApi.getAllUser();
       setUsers(data);
-      console.log(data);
     };
     fetch();
   }, []);
@@ -51,13 +50,13 @@ const Users = () => {
                         <span className="text">Email</span>
                       </th>
                       <th className="text-center">
-                        <span className="text">phone</span>
+                        <span className="text">Phone</span>
                       </th>
                       <th className="text-center">
                         <span className="text">Address</span>
                       </th>
                       <th className="text-center">
-                        <span className="text">Time</span>
+                        <span className="text">Create Account</span>
                       </th>
                     </tr>
                   </thead>

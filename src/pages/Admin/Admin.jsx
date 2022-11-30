@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import * as productsApi from "../../api/ProductRequest";
 import * as billApi from "../../api/BillRequest";
 import * as userApi from "../../api/UserRequest";
-import productImage from "../../assets/images/wireless-03.png";
+import productImage from "../../assets/images/image-load.jpeg";
 
 function Admin() {
   const [products, setProducts] = useState("");

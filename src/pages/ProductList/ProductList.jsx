@@ -98,7 +98,7 @@ const ProductLists = () => {
             </Row>
           </Container>
         </section>
-        <section className="pt-0 ">
+        <section className="pt-0  list-body">
           <Container>
             <Row>
               {loading ? (

@@ -9,9 +9,19 @@
   }
   .productList {
     flex: 4;
+
+    .search__box {
+      input {
+        background: transparent;
+      }
+    }
     section {
       padding: 20px;
-      background-color: white;
+      background-color: wheat;
+    }
+    .list-body {
+      max-height: 600px;
+      overflow-y: auto;
     }
   }
 }

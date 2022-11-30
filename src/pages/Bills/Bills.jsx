@@ -20,7 +20,6 @@ const Bills = () => {
     const fectApi = async () => {
       const { data } = await billApi.getAllBill();
       setBills(data);
-      console.log(data);
       const bills = data.reduce((acc, bill) => acc + Number(bill.quantity), 0);
       setProductsSell(bills);
 
