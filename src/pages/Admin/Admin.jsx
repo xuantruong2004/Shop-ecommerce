@@ -119,12 +119,16 @@ function Admin() {
         <div className="best-box">
           <div className="best-sell">
             <h6>best sell</h6>
-            <img
-              src={
-                productBestSell?.imgUrl ? productBestSell?.imgUrl : productImage
-              }
-              alt="imagePhoto"
-            />
+            <div className="box-image">
+              <img
+                src={
+                  productBestSell?.imgUrl
+                    ? productBestSell?.imgUrl
+                    : productImage
+                }
+                alt="imagePhoto"
+              />
+            </div>
             <Link to={`/shop/${productBestSell._id}`}>
               <h4>{productBestSell?.productname}</h4>
             </Link>
@@ -137,10 +141,14 @@ function Admin() {
           </div>
           <div className="best-sell">
             <h6>Best Luxury</h6>
-            <img
-              src={productLuxury?.imgUrl ? productLuxury?.imgUrl : productImage}
-              alt="imagePhoto"
-            />
+            <div className="box-image">
+              <img
+                src={
+                  productLuxury?.imgUrl ? productLuxury?.imgUrl : productImage
+                }
+                alt="imagePhoto"
+              />
+            </div>
             <Link to={`/shop/${productLuxury._id}`}>
               <h4>{productLuxury?.productname}</h4>
             </Link>
