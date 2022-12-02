@@ -4,15 +4,28 @@
   padding: 20px 20px 0 0;
   .item {
     padding: 10px 12px;
-    color: aliceblue;
+    color: rgb(203, 205, 207);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .icon {
+      font-size: 20px;
+    }
     &:hover {
       background-color: #242a47;
       color: white;
+      border-radius: 20px;
     }
   }
   .active {
     background-color: #242a47;
     color: white;
+    border-radius: 20px;
+
+    .item {
+      color: white;
+    }
   }
 }

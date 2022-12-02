@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import * as productsApi from "../../api/ProductRequest";
 import * as billApi from "../../api/BillRequest";
 import * as userApi from "../../api/UserRequest";
-import productImage from "../../assets/images/image-load.jpeg";
+import productImage from "../../assets/images/image-load.png";
 import { Link } from "react-router-dom";
 
 function Admin() {
@@ -118,7 +118,7 @@ function Admin() {
         {/* <div className="chart">chart</div> */}
         <div className="best-box">
           <div className="best-sell">
-            <h6>best sell</h6>
+            <h6>Best Sell</h6>
             <div className="box-image">
               <img
                 src={
@@ -127,6 +127,7 @@ function Admin() {
                     : productImage
                 }
                 alt="imagePhoto"
+                className="image"
               />
             </div>
             <Link to={`/shop/${productBestSell._id}`}>
@@ -147,6 +148,7 @@ function Admin() {
                   productLuxury?.imgUrl ? productLuxury?.imgUrl : productImage
                 }
                 alt="imagePhoto"
+                className="image"
               />
             </div>
             <Link to={`/shop/${productLuxury._id}`}>

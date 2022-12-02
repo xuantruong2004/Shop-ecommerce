@@ -1,7 +1,7 @@
 .admin-wrapper {
   display: flex;
   background-color: var(--body-bg);
-  padding: 0 100px;
+  padding: 0 120px;
   min-height: 100vh;
 
   .sidebar {
@@ -75,12 +75,10 @@
           display: flex;
           justify-content: center;
 
-          img {
+          .image {
             height: 300px;
-            width: 100%;
-            max-width: 200px;
-
-            object-fit: cover;
+            width: 200px;
+            object-fit: contain;
           }
         }
 
