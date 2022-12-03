@@ -1,59 +1,75 @@
-const bills = [
+// const categorys = [
+//   {
+//     category: "sofa",
+//   },
+//   {
+//     category: "sofa",
+//   },
+//   {
+//     category: "mobile",
+//   },
+//   {
+//     category: "chair",
+//   },
+//   {
+//     category: "chair",
+//   },
+//   {
+//     category: "watch",
+//   },
+//   {
+//     category: "watch",
+//   },
+// ];
+
+// const obj = categorys.reduce((acc, item) => {
+//   if (acc.hasOwnProperty(item.category)) {
+//     acc[`${item.category}`] = acc[`${item.category}`] + 1;
+//     return acc;
+//   } else {
+//     acc[`${item.category}`] = 1;
+//     return acc;
+//   }
+// }, {});
+// console.log(obj);
+// const arr = [];
+// for (const entry of Object.entries(obj)) {
+//   const [key, value] = entry;
+//   arr.push({ name: key, qty: value });
+// }
+// console.log(arr);
+
+const arr = [
   {
-    productId: 1,
-    quantity: 2,
+    wireless: 2,
   },
   {
-    productId: 2,
-    quantity: 3,
+    sofa: 2,
   },
   {
-    productId: 1,
-    quantity: 1,
+    wireless: 3,
   },
   {
-    productId: 2,
-    quantity: 5,
+    chair: 5,
   },
 ];
 
-// const obj = bills.reduce(
-//   (acc, bill) =>
-//     acc.hasOwnProperty(bill.productId)
-//       ? (acc[`${bill.productId}`] = acc[`${bill.productId}`] + bill.quantity)
-//       : (acc[`${bill.productId}`] = bill.quantity),
-//   {}
-// );
+let obj2 = { sofa: 0, chair: 0, mobile: 0, watch: 0, wireless: 0 };
 
-const obj = bills.reduce((acc, bill) => {
-  if (acc.hasOwnProperty(bill.productId)) {
-    acc[`${bill.productId}`] = acc[`${bill.productId}`] + bill.quantity;
-    return acc;
-  } else {
-    acc[`${bill.productId}`] = bill.quantity;
-    return acc;
-  }
-}, {});
-console.log(obj);
-let max = [0, 0];
-for (const entry of Object.entries(obj)) {
-  const [key, value] = entry;
-  if (max[1] < value) {
-    max = [key, value];
+for (let i = 0; i < arr.length; i++) {
+  for (const entry of Object.entries(arr[i])) {
+    const [key, value] = entry;
+    if (obj2.hasOwnProperty(key)) {
+      obj2[`${key}`] = obj2[`${key}`] + value;
+    } else {
+      obj2[`${key}`] = value;
+    }
   }
 }
-console.log(max);
-// const obj = bills.reduce(
-//   (acc, bill) =>
-//     acc.hasOwnProperty(bill.productId) ? [...acc, true] : [...acc, false],
-//   []
-// );
-// console.log(obj);
+const data = [];
+for (const entry of Object.entries(obj2)) {
+  const [key, value] = entry;
+  data.push({ name: key, qty: value });
+}
 
-// const abc={
-// 	a:"a",
-// 	b:"c"
-// }
-// const d="abc"
-// abc[`${d}`]="d"
-// console.log(abc);
+console.log(data);

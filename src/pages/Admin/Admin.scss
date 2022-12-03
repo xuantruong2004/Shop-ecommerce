@@ -56,6 +56,18 @@
       }
     }
 
+    .chart {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .chart-item {
+        width: 48%;
+        background: #151b38;
+        padding: 20px;
+        border-radius: 10px;
+      }
+    }
+
     .best-box {
       display: flex;
       align-items: center;

@@ -13,31 +13,31 @@ const SideBar = () => {
       <NavLink to={"/dashboard/home"}>
         <div className="item">
           <AiOutlineHome className="icon" />
-          <span>dashboard</span>
+          <span>Dashboard</span>
         </div>
       </NavLink>
       <NavLink to={"/dashboard/products"}>
         <div className="item">
           <RiProductHuntLine className="icon" />
-          <span>products</span>
+          <span>Products</span>
         </div>
       </NavLink>
       <NavLink to={"/dashboard/add-product"}>
         <div className="item">
           <MdAddCircleOutline className="icon" />
-          <span>add product</span>
+          <span>Add product</span>
         </div>
       </NavLink>
       <NavLink to={"/dashboard/bills"}>
         <div className="item">
           <RiBillLine className="icon" />
-          <span>bills</span>
+          <span>Bills</span>
         </div>
       </NavLink>
       <NavLink to={"/dashboard/users"}>
         <div className="item">
           <AiOutlineUserAdd className="icon" />
-          <span>users</span>
+          <span>Users</span>
         </div>
       </NavLink>
     </div>

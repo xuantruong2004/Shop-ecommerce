@@ -12,6 +12,16 @@ import * as billApi from "../../api/BillRequest";
 import * as userApi from "../../api/UserRequest";
 import productImage from "../../assets/images/image-load.png";
 import { Link } from "react-router-dom";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 function Admin() {
   const [products, setProducts] = useState("");
@@ -21,6 +31,8 @@ function Admin() {
   const [productBestSell, setProductBestSell] = useState("");
   const [quantityBestSell, setQuantityBestSell] = useState("");
   const [productLuxury, setProductLuxury] = useState("");
+  const [dataCategory, setDataCategory] = useState("");
+  const [dataCategoryBill, setDataCategoryBill] = useState("");
 
   useEffect(() => {
     const fectApi = async () => {
@@ -54,6 +66,38 @@ function Admin() {
         }
       }, {});
 
+      const arrCategory = [];
+      for (const entry of Object.entries(obj)) {
+        const [key, value] = entry;
+        for (let i = 0; i < products.length; i++) {
+          if (products[i]._id === key) {
+            arrCategory.push({ [products[i].category]: value });
+          }
+        }
+      }
+
+      let obj2 = { sofa: 0, chair: 0, mobile: 0, watch: 0, wireless: 0 };
+
+      for (let i = 0; i < arrCategory.length; i++) {
+        for (const entry of Object.entries(arrCategory[i])) {
+          const [key, value] = entry;
+          if (obj2.hasOwnProperty(key)) {
+            obj2[`${key}`] = obj2[`${key}`] + value;
+          } else {
+            obj2[`${key}`] = value;
+          }
+        }
+      }
+      const data1 = [];
+      for (const entry of Object.entries(obj2)) {
+        const [key, value] = entry;
+        data1.push({ name: key, qty: value });
+      }
+
+      setDataCategoryBill(data1);
+      const { data: category } = await productsApi.getListCategory();
+      setDataCategory(category);
+
       let max = [0, 0];
       for (const entry of Object.entries(obj)) {
         const [key, value] = entry;
@@ -79,6 +123,7 @@ function Admin() {
     };
     fectApi();
   }, []);
+
   return (
     <div className="admin-wrapper">
       <div className="sidebar">
@@ -115,7 +160,68 @@ function Admin() {
             <MdOutlineAttachMoney className="item-right" />
           </div>
         </div>
-        {/* <div className="chart">chart</div> */}
+
+        <div className="chart">
+          <div className="chart-item">
+            <h6>Category products chart</h6>
+            <ResponsiveContainer width="100%" aspect={4 / 1}>
+              <BarChart
+                // width={500}
+                // height={100}
+                data={dataCategory}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+                barSize={20}
+              >
+                <XAxis
+                  dataKey="name"
+                  scale="point"
+                  padding={{ left: 10, right: 10 }}
+                  stroke="#fff"
+                />
+                {/* <YAxis /> */}
+                <Tooltip />
+                <Legend />
+                {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                <Bar dataKey="qty" fill="#e54a42" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="chart-item">
+            <h6>Sell products chart</h6>
+            <ResponsiveContainer width="100%" aspect={4 / 1}>
+              <BarChart
+                // width={500}
+                // height={100}
+                data={dataCategoryBill}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+                barSize={20}
+              >
+                <XAxis
+                  dataKey="name"
+                  scale="point"
+                  padding={{ left: 10, right: 10 }}
+                  stroke="#fff"
+                />
+                {/* <YAxis /> */}
+                <Tooltip />
+                <Legend />
+                {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                <Bar dataKey="qty" fill="#37c983" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
         <div className="best-box">
           <div className="best-sell">
             <h6>Best Sell</h6>
