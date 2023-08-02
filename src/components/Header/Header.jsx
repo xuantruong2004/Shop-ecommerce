@@ -115,7 +115,7 @@ const Header = () => {
                     }
                     alt="user_icon"
                   />
-                  <span className="username">{user?.user.username}</span>
+                  <span className="username">{user?.user?.username}</span>
                   {userModal && (
                     <div className="modalUser">
                       <h5 className="title">
